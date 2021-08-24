@@ -42,7 +42,7 @@ public class RequestHeaderServlet extends HttpServlet {
     //Header 모든 정보
     private void printHeaders(HttpServletRequest request) {
         System.out.println("----------Headers - start----------");
-
+/*
         Enumeration<String> headerNames = request.getHeaderNames();
 
         while (headerNames.hasMoreElements()) {
@@ -50,6 +50,10 @@ public class RequestHeaderServlet extends HttpServlet {
             String headerName = headerNames.nextElement();
             System.out.println(headerName +":" + headerName);
         }
+
+ */
+        request.getHeaderNames().asIterator()
+                .forEachRemaining(headerName -> System.out.println(headerName +":" + headerName));
 
         System.out.println("----------Headers - end ----------");
         System.out.println();
