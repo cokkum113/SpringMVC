@@ -4,8 +4,7 @@ import hello.servelet.domain.member.Member;
 import hello.servelet.domain.member.MemberRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -15,12 +14,14 @@ import java.util.List;
 public class SpringMemberControllerV3 {
     private MemberRepository memberRepository = MemberRepository.getInstance();
 
-    @RequestMapping("/new-form")
+//    @RequestMapping(value = "/new-form", method = RequestMethod.GET) GET만 받을 수 있게 하는 것.
+    @GetMapping("/new-form")
     public String newForm() {
         return "new-form";
     }
 
-    @RequestMapping("/save")
+//    @RequestMapping(value = "/save", method = RequestMethod.POST)
+    @PostMapping("/save")
     public String save(@RequestParam("username") String username,
                              @RequestParam("age") int age,
                              Model model) {
@@ -33,7 +34,8 @@ public class SpringMemberControllerV3 {
     }
 
     //springmvc/v2/members
-    @RequestMapping
+//    @RequestMapping(method = RequestMethod.GET)
+    @GetMapping
     public String members(Model model) {
         List<Member> members = memberRepository.findAll();
 
